@@ -1,7 +1,4 @@
 ```
-# Dependencies
-uv.lock
-
 # Python
 __pycache__/
 *.py[cod]
@@ -51,13 +48,9 @@ coverage/
 htmlcov/
 .coverage.*
 
-# MyPy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pytest
+# Testing
 .pytest_cache/
+.mypy_cache/
 
 # OS
 .DS_Store

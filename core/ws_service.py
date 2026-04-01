@@ -132,7 +132,9 @@ class WebSocketServer:
         try:
             logger.info("正在初始化 ASR 引擎...")
             self.asr_engine = StreamASREngine(self.asr_config)
-            asyncio.get_event_loop().run_in_executor(None, self.asr_engine.initialize)
+            # 在线程池中同步执行初始化
+            loop = asyncio.get_running_loop()
+            await loop.run_in_executor(None, self.asr_engine.initialize)
             
             self._server = await websockets.serve(
                 self._handle_connection,
