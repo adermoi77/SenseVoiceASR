@@ -1,0 +1,8 @@
+# SenseVoiceSmall 配置文件
+ASR:
+  model: sensevoice_small
+  model_path: ./models/sensevoice_small.onnx
+  device: cpu
+  beam_size: 5
+  max_decoding_len: 100
+  vocab_path: ./models/vocab.txt
