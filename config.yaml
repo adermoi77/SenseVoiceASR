@@ -1,8 +1,31 @@
-# SenseVoiceSmall 配置文件
-ASR:
-  model: sensevoice_small
-  model_path: ./models/sensevoice_small.onnx
-  device: cpu
-  beam_size: 5
-  max_decoding_len: 100
-  vocab_path: ./models/vocab.txt
+# SenseVoice ASR 服务配置文件
+# 基于 FunASR 官方流式识别引擎
+
+server:
+  host: "0.0.0.0"
+  port: 8765
+  max_connections: 100
+  heartbeat_interval: 30  # 心跳间隔（秒）
+
+asr:
+  # 模型配置
+  model_name: "sensevoice_small"
+  # 模型自动从 ModelScope 下载，无需本地路径
+  device: "cpu"  # cpu / cuda
+  language: "auto"  # auto / zh / en / ja / ko
+  use_vad: true  # 启用语音活动检测
+  use_itn: true  # 启用逆文本标准化（数字/日期格式化）
+  
+# 音频参数（固定，不可修改）
+audio:
+  sample_rate: 16000
+  bit_depth: 16
+  channels: 1
+  
+# 日志配置
+logging:
+  level: "INFO"  # DEBUG / INFO / WARNING / ERROR
+  format: "%(asctime)s | %(levelname)-8s | %(name)s | %(message)s"
+  file: "logs/asr_server.log"
+  max_size_mb: 10
+  backup_count: 5
